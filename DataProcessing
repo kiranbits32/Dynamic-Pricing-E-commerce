@@ -1,0 +1,28 @@
+# Imported the pandas library for data handling
+import pandas as pd
+
+
+dataset = pd.read_csv('KaggleEcommerce_file.csv')
+
+print("Sample records from the dataset:")
+print(dataset.head())
+
+print("\nDataset overview:")
+print(dataset.info())  # Displays column details, data types, and missing values
+
+# Deletes duplicates rows
+dataset_cleaned = dataset.drop_duplicates()
+
+# Displays the change in dataset size after removing duplicates
+print(f"\nRows in the original dataset: {len(dataset)}")
+print(f"Rows after removing duplicates: {len(dataset_cleaned)}")
+
+# Drop rows with any missing values
+dataset_no_missing = dataset_cleaned.dropna()
+
+print("\nCleaned dataset preview (missing values removed):")
+print(dataset_no_missing.head())
+
+# Processed Dataset
+dataset_no_missing.to_csv('processed_dataset.csv', index=False)
+print("\nProcessed dataset saved as 'processed_dataset.csv'")
